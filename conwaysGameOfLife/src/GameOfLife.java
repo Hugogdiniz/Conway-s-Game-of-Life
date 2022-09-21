@@ -46,7 +46,14 @@ public class GameOfLife {
     public static void imprimirMatriz(int[][] mtz) {
         for (int linha=0;linha<linhasMatriz;linha++) {
             for (int coluna = 0; coluna < colunasMatriz; coluna++) {
-                System.out.printf("%d | ", mtz[linha][coluna]);
+                if (mtz[linha][coluna] == 1){
+                    System.out.print("*");
+
+                } else {
+                    System.out.print(" ");
+
+                }
+
             }
             System.out.printf("%n");
         }
@@ -105,8 +112,10 @@ public class GameOfLife {
                         proximaGeracao[linha][coluna] = 1;
                     } else if (celula == 1 && (vizinhos < 2 || vizinhos > 3)) {
                         proximaGeracao[linha][coluna] = 0;
+                    } else if (celula == 1 && (vizinhos == 2 || vizinhos == 3)){
+                        proximaGeracao[linha][coluna] = 1;
                     } else {
-                        proximaGeracao[linha][coluna] = celula;
+                        proximaGeracao[linha][coluna] = 0;
                     }
                 }
             }
@@ -123,7 +132,7 @@ public class GameOfLife {
 
     // método para dar um tempo entre cada impressão, para melhorar a visualização
     private static void sleep() throws InterruptedException {
-        Thread.sleep(500);
+        Thread.sleep(200);
     }
 
     // método para limpar o console
