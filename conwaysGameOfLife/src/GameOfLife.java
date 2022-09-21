@@ -89,7 +89,7 @@ public class GameOfLife {
 
         gerarMatrizAleatoria(matriz);
         imprimirMatriz(matriz);
-        // clear();
+
 
         int[][] proximaGeracao = new int[linhasMatriz][colunasMatriz];
 
