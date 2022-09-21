@@ -53,7 +53,6 @@ public class GameOfLife {
                     System.out.print(" ");
 
                 }
-
             }
             System.out.printf("%n");
         }
@@ -95,6 +94,7 @@ public class GameOfLife {
     public static void Play(int[][] matriz) throws InterruptedException {
 
         gerarMatrizAleatoria(matriz);
+
         imprimirMatriz(matriz);
 
 
@@ -112,14 +112,17 @@ public class GameOfLife {
                         proximaGeracao[linha][coluna] = 1;
                     } else if (celula == 1 && (vizinhos < 2 || vizinhos > 3)) {
                         proximaGeracao[linha][coluna] = 0;
-                    } else if (celula == 1 && (vizinhos == 2 || vizinhos == 3)){
+                    } else if (celula == 1){
                         proximaGeracao[linha][coluna] = 1;
                     } else {
                         proximaGeracao[linha][coluna] = 0;
                     }
                 }
             }
-            matriz = proximaGeracao;
+            for(int x=0; x<matriz.length; x++) {
+                System.arraycopy(proximaGeracao[x], 0,matriz[x],0,matriz[0].length);
+            }
+
             clear();
             imprimirMatriz(matriz);
             sleep();
